@@ -1,0 +1,6 @@
+{
+  "name": "CarbonWise AI",
+  "description": "Intelligent Carbon Footprint Management Platform - Measure, Understand, and Reduce your carbon emissions with AI-driven sustainability insights.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
