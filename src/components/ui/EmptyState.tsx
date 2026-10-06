@@ -17,19 +17,19 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
   icon,
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center p-8 text-center bg-white rounded-xl border border-dashed border-slate-300">
-      <div className="p-3 bg-slate-50 text-slate-400 rounded-full border border-slate-100 mb-3">
+    <div className="flex flex-col items-center justify-center p-8 text-center bg-white dark:bg-[#0b1120] rounded-2xl border border-dashed border-slate-300 dark:border-slate-800 transition-colors">
+      <div className="p-3 bg-slate-50 dark:bg-[#11192d] text-slate-400 dark:text-slate-500 rounded-full border border-slate-100 dark:border-slate-800 mb-3">
         {icon || <Inbox className="w-6 h-6" />}
       </div>
-      <h4 className="text-sm font-semibold text-slate-800">{title}</h4>
-      <p className="text-xs text-slate-500 max-w-sm mt-1 leading-relaxed">{description}</p>
+      <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-100">{title}</h4>
+      <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mt-1 leading-relaxed">{description}</p>
       {onAction && (
         <button
           onClick={onAction}
-          className="mt-4 inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium rounded-lg shadow-xs transition-colors"
+          className="mt-4 inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-lg shadow-xs transition-colors"
         >
           <PlusCircle className="w-3.5 h-3.5" />
-          {actionText}
+          <span>{actionText}</span>
         </button>
       )}
     </div>
@@ -40,7 +40,7 @@ export const LoadingSkeleton: React.FC<{ rows?: number }> = ({ rows = 3 }) => {
   return (
     <div className="space-y-3 animate-pulse">
       {Array.from({ length: rows }).map((_, i) => (
-        <div key={i} className="h-12 bg-slate-100 rounded-lg w-full" />
+        <div key={i} className="h-12 bg-slate-100 dark:bg-slate-800/80 rounded-xl w-full" />
       ))}
     </div>
   );

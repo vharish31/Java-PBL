@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import { useApp } from '../store/AppContext';
 import { 
-  HelpCircle, 
   ChevronDown, 
   ChevronUp, 
   Send, 
   Database, 
   BookOpen, 
   Mail, 
-  CheckCircle2, 
-  Info,
-  Car,
-  Zap,
-  Flame,
-  Package
+  CheckCircle2
 } from 'lucide-react';
 
 export const HelpPage: React.FC = () => {
@@ -62,41 +56,41 @@ export const HelpPage: React.FC = () => {
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
       {/* Header */}
-      <div className="pb-2 border-b border-slate-200">
-        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
+      <div className="pb-2 border-b border-slate-200 dark:border-slate-800">
+        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
           Help Center & Documentation
         </h1>
-        <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
           Methodology transparent guides, standard emission factor references, and support
         </p>
       </div>
 
       {/* Frequently Asked Questions */}
-      <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-xs space-y-4">
+      <div className="bg-white dark:bg-[#0b1120] rounded-2xl border border-slate-200 dark:border-slate-800/80 p-6 shadow-xs space-y-4 transition-colors">
         <div className="flex items-center gap-2">
-          <BookOpen className="w-4 h-4 text-emerald-600" />
-          <h2 className="text-sm font-bold text-slate-900">Frequently Asked Questions</h2>
+          <BookOpen className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+          <h2 className="text-sm font-bold text-slate-900 dark:text-slate-100">Frequently Asked Questions</h2>
         </div>
 
         <div className="space-y-2">
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className="border border-slate-200 rounded-lg overflow-hidden transition-colors"
+              className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden transition-colors"
             >
               <button
                 onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)}
-                className="w-full p-3.5 text-left text-xs font-semibold text-slate-900 flex items-center justify-between hover:bg-slate-50 transition-colors"
+                className="w-full p-3.5 text-left text-xs font-semibold text-slate-900 dark:text-slate-100 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors"
               >
                 <span>{faq.q}</span>
                 {openFaqIndex === i ? (
-                  <ChevronUp className="w-4 h-4 text-slate-400 shrink-0" />
+                  <ChevronUp className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
                 ) : (
-                  <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
+                  <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
                 )}
               </button>
               {openFaqIndex === i && (
-                <div className="px-3.5 pb-3.5 pt-1 text-xs text-slate-600 leading-relaxed bg-slate-50/50 border-t border-slate-100">
+                <div className="px-3.5 pb-3.5 pt-1 text-xs text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50/50 dark:bg-[#11192d] border-t border-slate-100 dark:border-slate-800">
                   {faq.a}
                 </div>
               )}
@@ -106,18 +100,18 @@ export const HelpPage: React.FC = () => {
       </div>
 
       {/* Verified Emission Factor Benchmark Reference */}
-      <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-xs space-y-4">
+      <div className="bg-white dark:bg-[#0b1120] rounded-2xl border border-slate-200 dark:border-slate-800/80 p-6 shadow-xs space-y-4 transition-colors">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Database className="w-4 h-4 text-emerald-600" />
-            <h2 className="text-sm font-bold text-slate-900">Emission Factor Benchmark Index</h2>
+            <Database className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            <h2 className="text-sm font-bold text-slate-900 dark:text-slate-100">Emission Factor Benchmark Index</h2>
           </div>
-          <span className="text-[10px] text-slate-400">DEFRA / EPA Standard Reference</span>
+          <span className="text-[10px] text-slate-400 dark:text-slate-500">DEFRA / EPA Standard Reference</span>
         </div>
 
-        <div className="overflow-x-auto border border-slate-200 rounded-lg">
+        <div className="overflow-x-auto border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
           <table className="w-full text-left text-xs">
-            <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-semibold uppercase text-[10px]">
+            <thead className="bg-slate-50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-semibold uppercase text-[10px]">
               <tr>
                 <th className="p-3">Category</th>
                 <th className="p-3">Activity / Fuel Source</th>
@@ -125,15 +119,15 @@ export const HelpPage: React.FC = () => {
                 <th className="p-3">Certified Source</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 text-slate-700">
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
               {emissionFactors.map(f => (
-                <tr key={f.id} className="hover:bg-slate-50/60">
+                <tr key={f.id} className="hover:bg-slate-50/60 dark:hover:bg-slate-800/40 transition-colors">
                   <td className="p-3 capitalize font-medium">{f.category}</td>
-                  <td className="p-3 text-slate-900 font-medium">{f.name}</td>
-                  <td className="p-3 font-mono font-bold text-emerald-700">
-                    {f.factor} <span className="font-normal text-[11px] text-slate-500">kg CO₂/{f.unit}</span>
+                  <td className="p-3 text-slate-900 dark:text-slate-100 font-medium">{f.name}</td>
+                  <td className="p-3 font-mono font-bold text-emerald-700 dark:text-emerald-400">
+                    {f.factor} <span className="font-normal text-[11px] text-slate-500 dark:text-slate-400">kg CO₂/{f.unit}</span>
                   </td>
-                  <td className="p-3 text-[11px] text-slate-400">{f.source}</td>
+                  <td className="p-3 text-[11px] text-slate-400 dark:text-slate-500">{f.source}</td>
                 </tr>
               ))}
             </tbody>
@@ -142,57 +136,57 @@ export const HelpPage: React.FC = () => {
       </div>
 
       {/* Support & Contact Form */}
-      <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-xs space-y-4">
+      <div className="bg-white dark:bg-[#0b1120] rounded-2xl border border-slate-200 dark:border-slate-800/80 p-6 shadow-xs space-y-4 transition-colors">
         <div className="flex items-center gap-2">
-          <Mail className="w-4 h-4 text-emerald-600" />
-          <h2 className="text-sm font-bold text-slate-900">Contact Support & Methodology Team</h2>
+          <Mail className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+          <h2 className="text-sm font-bold text-slate-900 dark:text-slate-100">Contact Support & Methodology Team</h2>
         </div>
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-slate-500 dark:text-slate-400">
           Have an inquiry regarding custom grid factors, enterprise features, or feedback? Send our climate engineers a note.
         </p>
 
         {submitted ? (
-          <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-xs text-emerald-800 flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+          <div className="p-4 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 rounded-xl text-xs text-emerald-800 dark:text-emerald-300 flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             <span>Thank you! Your ticket has been logged and our team will get back to you shortly.</span>
           </div>
         ) : (
           <form onSubmit={handleSupportSubmit} className="space-y-3 text-xs max-w-lg">
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block font-medium text-slate-700">Your Name</label>
+                <label className="block font-medium text-slate-700 dark:text-slate-300">Your Name</label>
                 <input
                   type="text"
                   required
                   placeholder="Harish Kalyan"
                   value={supportName}
                   onChange={e => setSupportName(e.target.value)}
-                  className="mt-1 w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="mt-1 w-full px-3 py-2 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-slate-100 bg-white dark:bg-[#11192d] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 />
               </div>
 
               <div>
-                <label className="block font-medium text-slate-700">Work Email</label>
+                <label className="block font-medium text-slate-700 dark:text-slate-300">Work Email</label>
                 <input
                   type="email"
                   required
                   placeholder="harish@carbonwise.io"
                   value={supportEmail}
                   onChange={e => setSupportEmail(e.target.value)}
-                  className="mt-1 w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="mt-1 w-full px-3 py-2 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-slate-100 bg-white dark:bg-[#11192d] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block font-medium text-slate-700">Message / Inquiry</label>
+              <label className="block font-medium text-slate-700 dark:text-slate-300">Message / Inquiry</label>
               <textarea
                 required
                 rows={3}
                 placeholder="Describe your inquiry or feature suggestion..."
                 value={supportMessage}
                 onChange={e => setSupportMessage(e.target.value)}
-                className="mt-1 w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="mt-1 w-full px-3 py-2 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-slate-100 bg-white dark:bg-[#11192d] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
               />
             </div>
 

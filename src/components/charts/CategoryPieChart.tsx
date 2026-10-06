@@ -57,10 +57,10 @@ export const CategoryPieChart: React.FC<CategoryPieChartProps> = ({ records }) =
   ].filter(d => d.value > 0);
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs flex flex-col justify-between">
+    <div className="bg-white dark:bg-[#0b1120] rounded-2xl border border-slate-200 dark:border-slate-800/80 p-6 shadow-xs flex flex-col justify-between transition-colors">
       <div>
-        <h3 className="text-sm font-semibold text-slate-900">Emission Breakdown</h3>
-        <p className="text-xs text-slate-500 mt-0.5">Distribution across primary source activities</p>
+        <h3 className="text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100">Emission Breakdown</h3>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Distribution across primary source activities</p>
       </div>
 
       <div className="relative h-48 sm:h-52 my-2 flex items-center justify-center">
@@ -97,24 +97,24 @@ export const CategoryPieChart: React.FC<CategoryPieChartProps> = ({ records }) =
 
         {/* Center label */}
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <span className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Total</span>
-          <span className="text-base font-bold text-slate-900 leading-tight">
-            {grandTotal.toFixed(0)} <span className="text-xs font-normal text-slate-500">kg</span>
+          <span className="text-[11px] font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wider">Total</span>
+          <span className="text-base font-bold text-slate-900 dark:text-slate-100 leading-tight">
+            {grandTotal.toFixed(0)} <span className="text-xs font-normal text-slate-500 dark:text-slate-400">kg</span>
           </span>
         </div>
       </div>
 
       {/* Legend */}
-      <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
+      <div className="grid grid-cols-2 gap-2 pt-3 border-t border-slate-100 dark:border-slate-800/80 text-xs">
         {chartData.map(item => {
           const pct = Math.round((item.value / grandTotal) * 100) || 0;
           return (
-            <div key={item.name} className="flex items-center justify-between p-1.5 rounded-md hover:bg-slate-50">
+            <div key={item.name} className="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50 dark:hover:bg-[#162038] transition-colors">
               <div className="flex items-center gap-1.5 min-w-0">
                 <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
-                <span className="text-slate-700 font-medium truncate">{item.name}</span>
+                <span className="text-slate-700 dark:text-slate-300 font-medium truncate">{item.name}</span>
               </div>
-              <span className="text-slate-500 text-[11px] font-mono shrink-0 ml-1">
+              <span className="text-slate-500 dark:text-slate-400 text-[11px] font-mono shrink-0 ml-1">
                 {pct}%
               </span>
             </div>

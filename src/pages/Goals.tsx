@@ -4,15 +4,10 @@ import { Goal } from '../types';
 import { Modal } from '../components/ui/Modal';
 import { EmptyState } from '../components/ui/EmptyState';
 import { 
-  Target, 
   Plus, 
   CheckCircle2, 
   Clock, 
-  Calendar, 
-  TrendingDown, 
-  Edit2, 
   Trash2, 
-  Award,
   Zap,
   Car,
   Flame,
@@ -74,21 +69,21 @@ export const GoalsPage: React.FC = () => {
   };
 
   const typeIconMap = {
-    co2_total: <CloudFog className="w-4 h-4 text-emerald-600" />,
-    transport: <Car className="w-4 h-4 text-emerald-600" />,
-    electricity: <Zap className="w-4 h-4 text-sky-600" />,
-    fuel: <Flame className="w-4 h-4 text-orange-600" />,
+    co2_total: <CloudFog className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
+    transport: <Car className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
+    electricity: <Zap className="w-4 h-4 text-sky-600 dark:text-sky-400" />,
+    fuel: <Flame className="w-4 h-4 text-orange-600 dark:text-orange-400" />,
   };
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
             Sustainability Goals
           </h1>
-          <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
             Set ambitious, trackable reduction targets and celebrate carbon savings milestones
           </p>
         </div>
@@ -103,13 +98,13 @@ export const GoalsPage: React.FC = () => {
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex items-center gap-2 border-b border-slate-200">
+      <div className="flex items-center gap-4 border-b border-slate-200 dark:border-slate-800">
         <button
           onClick={() => setActiveTab('in_progress')}
           className={`pb-2.5 px-1 text-xs font-semibold border-b-2 transition-all ${
             activeTab === 'in_progress'
-              ? 'border-emerald-600 text-emerald-700'
-              : 'border-transparent text-slate-500 hover:text-slate-800'
+              ? 'border-emerald-600 dark:border-emerald-500 text-emerald-700 dark:text-emerald-400'
+              : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
           }`}
         >
           Active Goals ({goals.filter(g => g.status === 'in_progress').length})
@@ -118,8 +113,8 @@ export const GoalsPage: React.FC = () => {
           onClick={() => setActiveTab('completed')}
           className={`pb-2.5 px-1 text-xs font-semibold border-b-2 transition-all ${
             activeTab === 'completed'
-              ? 'border-emerald-600 text-emerald-700'
-              : 'border-transparent text-slate-500 hover:text-slate-800'
+              ? 'border-emerald-600 dark:border-emerald-500 text-emerald-700 dark:text-emerald-400'
+              : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
           }`}
         >
           Completed ({goals.filter(g => g.status === 'completed').length})
@@ -150,23 +145,23 @@ export const GoalsPage: React.FC = () => {
             return (
               <div
                 key={goal.id}
-                className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs flex flex-col justify-between space-y-4 hover:border-slate-300 transition-all"
+                className="bg-white dark:bg-[#0b1120] rounded-2xl border border-slate-200 dark:border-slate-800/80 p-5 shadow-xs flex flex-col justify-between space-y-4 hover:border-slate-300 dark:hover:border-slate-700 transition-all"
               >
                 <div>
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-center gap-2">
-                      <div className="p-2 rounded-lg bg-slate-50 border border-slate-100">
+                      <div className="p-2 rounded-xl bg-slate-50 dark:bg-[#11192d] border border-slate-100 dark:border-slate-800">
                         {typeIconMap[goal.type]}
                       </div>
                       <div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                           {goal.type.replace('_', ' ')}
                         </span>
-                        <h3 className="text-sm font-bold text-slate-900 mt-0.5">{goal.title}</h3>
+                        <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100 mt-0.5">{goal.title}</h3>
                       </div>
                     </div>
 
-                    <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
                       -{goal.targetPercent}% Target
                     </span>
                   </div>
@@ -174,37 +169,37 @@ export const GoalsPage: React.FC = () => {
                   {/* Progress Bar */}
                   <div className="mt-4 space-y-1.5">
                     <div className="flex justify-between text-xs">
-                      <span className="font-semibold text-slate-700">Progress</span>
-                      <span className="font-bold text-emerald-700">{progressPercent}%</span>
+                      <span className="font-semibold text-slate-700 dark:text-slate-300">Progress</span>
+                      <span className="font-bold text-emerald-700 dark:text-emerald-400">{progressPercent}%</span>
                     </div>
-                    <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-emerald-600 rounded-full transition-all duration-500"
+                        className="h-full bg-emerald-600 dark:bg-emerald-500 rounded-full transition-all duration-500"
                         style={{ width: `${progressPercent}%` }}
                       />
                     </div>
                   </div>
 
                   {/* Values Breakdown */}
-                  <div className="grid grid-cols-3 gap-2 mt-4 p-2.5 bg-slate-50 rounded-lg text-center text-xs border border-slate-100">
+                  <div className="grid grid-cols-3 gap-2 mt-4 p-2.5 bg-slate-50 dark:bg-[#11192d] rounded-xl text-center text-xs border border-slate-100 dark:border-slate-800">
                     <div>
-                      <p className="text-[10px] text-slate-400">Current</p>
-                      <p className="font-bold text-slate-900 mt-0.5">{goal.currentValue} <span className="font-normal text-[10px]">kg</span></p>
+                      <p className="text-[10px] text-slate-400 dark:text-slate-500">Current</p>
+                      <p className="font-bold text-slate-900 dark:text-slate-100 mt-0.5">{goal.currentValue} <span className="font-normal text-[10px] text-slate-400">kg</span></p>
                     </div>
                     <div>
-                      <p className="text-[10px] text-slate-400">Target</p>
-                      <p className="font-bold text-emerald-700 mt-0.5">{goal.targetEmission} <span className="font-normal text-[10px]">kg</span></p>
+                      <p className="text-[10px] text-slate-400 dark:text-slate-500">Target</p>
+                      <p className="font-bold text-emerald-700 dark:text-emerald-400 mt-0.5">{goal.targetEmission} <span className="font-normal text-[10px] text-slate-400">kg</span></p>
                     </div>
                     <div>
-                      <p className="text-[10px] text-slate-400">Remaining</p>
-                      <p className="font-bold text-slate-900 mt-0.5">{remainingKg.toFixed(1)} <span className="font-normal text-[10px]">kg</span></p>
+                      <p className="text-[10px] text-slate-400 dark:text-slate-500">Remaining</p>
+                      <p className="font-bold text-slate-900 dark:text-slate-100 mt-0.5">{remainingKg.toFixed(1)} <span className="font-normal text-[10px] text-slate-400">kg</span></p>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-xs text-slate-500">
+                <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
                   <div className="flex items-center gap-1.5 text-[11px]">
-                    <Clock className="w-3.5 h-3.5 text-slate-400" />
+                    <Clock className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                     <span>Target deadline: {goal.deadline}</span>
                   </div>
 
@@ -213,26 +208,26 @@ export const GoalsPage: React.FC = () => {
                       <>
                         <button
                           onClick={() => setEditingGoal(goal)}
-                          className="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-[11px] transition-colors"
+                          className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium text-[11px] transition-colors"
                         >
                           Update
                         </button>
                         <button
                           onClick={() => handleCompleteGoal(goal.id)}
-                          className="px-2.5 py-1 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-[11px] transition-colors"
+                          className="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-[11px] transition-colors"
                         >
                           Complete
                         </button>
                       </>
                     ) : (
-                      <span className="text-[11px] font-semibold text-emerald-600 flex items-center gap-1">
+                      <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                         <CheckCircle2 className="w-3.5 h-3.5" /> Achieved
                       </span>
                     )}
 
                     <button
                       onClick={() => deleteGoal(goal.id)}
-                      className="p-1 text-slate-400 hover:text-rose-600 transition-colors"
+                      className="p-1.5 text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 rounded-lg transition-colors"
                       title="Delete goal"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
@@ -254,24 +249,24 @@ export const GoalsPage: React.FC = () => {
       >
         <form onSubmit={handleCreateSubmit} className="space-y-4 text-xs">
           <div>
-            <label className="block font-medium text-slate-700">Goal Title</label>
+            <label className="block font-medium text-slate-700 dark:text-slate-300">Goal Title</label>
             <input
               type="text"
               required
               placeholder="e.g. Cut transport footprint by 20%"
               value={title}
               onChange={e => setTitle(e.target.value)}
-              className="mt-1 w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="mt-1 w-full px-3 py-2 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-slate-100 bg-white dark:bg-[#11192d] focus:outline-none focus:ring-1 focus:ring-emerald-500"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block font-medium text-slate-700">Category Scope</label>
+              <label className="block font-medium text-slate-700 dark:text-slate-300">Category Scope</label>
               <select
                 value={goalType}
                 onChange={e => setGoalType(e.target.value as any)}
-                className="mt-1 w-full px-2.5 py-2 border border-slate-200 rounded-lg text-slate-900 bg-white focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="mt-1 w-full px-2.5 py-2 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-slate-100 bg-white dark:bg-[#11192d] focus:outline-none focus:ring-1 focus:ring-emerald-500"
               >
                 <option value="co2_total">Total CO₂ Footprint</option>
                 <option value="transport">Transport & Commute</option>
@@ -281,7 +276,7 @@ export const GoalsPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-slate-700">Target Reduction (%)</label>
+              <label className="block font-medium text-slate-700 dark:text-slate-300">Target Reduction (%)</label>
               <input
                 type="number"
                 min="5"
@@ -289,39 +284,39 @@ export const GoalsPage: React.FC = () => {
                 step="5"
                 value={targetPercent}
                 onChange={e => setTargetPercent(Number(e.target.value))}
-                className="mt-1 w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="mt-1 w-full px-3 py-2 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-slate-100 bg-white dark:bg-[#11192d] focus:outline-none focus:ring-1 focus:ring-emerald-500"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block font-medium text-slate-700">Baseline Emission (kg)</label>
+              <label className="block font-medium text-slate-700 dark:text-slate-300">Baseline Emission (kg)</label>
               <input
                 type="number"
                 step="0.5"
                 value={baselineEmission}
                 onChange={e => setBaselineEmission(Number(e.target.value))}
-                className="mt-1 w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="mt-1 w-full px-3 py-2 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-slate-100 bg-white dark:bg-[#11192d] focus:outline-none focus:ring-1 focus:ring-emerald-500"
               />
             </div>
 
             <div>
-              <label className="block font-medium text-slate-700">Deadline Horizon (Days)</label>
+              <label className="block font-medium text-slate-700 dark:text-slate-300">Deadline Horizon (Days)</label>
               <input
                 type="number"
                 min="7"
                 max="365"
                 value={deadlineDays}
                 onChange={e => setDeadlineDays(Number(e.target.value))}
-                className="mt-1 w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="mt-1 w-full px-3 py-2 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-slate-100 bg-white dark:bg-[#11192d] focus:outline-none focus:ring-1 focus:ring-emerald-500"
               />
             </div>
           </div>
 
-          <div className="p-3 bg-emerald-50 rounded-lg border border-emerald-200 text-emerald-900">
+          <div className="p-3 bg-emerald-50 dark:bg-emerald-950/40 rounded-xl border border-emerald-200 dark:border-emerald-800/60 text-emerald-900 dark:text-emerald-200">
             <p className="font-semibold">Calculated Goal Objective:</p>
-            <p className="mt-0.5 text-emerald-700">
+            <p className="mt-0.5 text-emerald-700 dark:text-emerald-300">
               Lower emissions from <strong>{baselineEmission} kg</strong> down to{' '}
               <strong>{calculateTargetEmission(baselineEmission, targetPercent)} kg CO₂</strong> within {deadlineDays} days.
             </p>
@@ -331,13 +326,13 @@ export const GoalsPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsCreateOpen(false)}
-              className="px-3.5 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50"
+              className="px-3.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold"
+              className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold transition-colors"
             >
               Create Goal
             </button>
@@ -355,23 +350,23 @@ export const GoalsPage: React.FC = () => {
       >
         {editingGoal && (
           <div className="space-y-4 text-xs">
-            <p className="text-slate-600">
-              Update the current measured level for <strong>{editingGoal.title}</strong>:
+            <p className="text-slate-600 dark:text-slate-300">
+              Update the current measured level for <strong className="text-slate-900 dark:text-slate-100">{editingGoal.title}</strong>:
             </p>
             <div>
-              <label className="block font-medium text-slate-700">Current Level (kg CO₂)</label>
+              <label className="block font-medium text-slate-700 dark:text-slate-300">Current Level (kg CO₂)</label>
               <input
                 type="number"
                 step="0.5"
                 defaultValue={editingGoal.currentValue}
                 id="update-current-val-input"
-                className="mt-1 w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="mt-1 w-full px-3 py-2 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-slate-100 bg-white dark:bg-[#11192d] focus:outline-none focus:ring-1 focus:ring-emerald-500"
               />
             </div>
             <div className="flex justify-end gap-2 pt-2">
               <button
                 onClick={() => setEditingGoal(null)}
-                className="px-3 py-1.5 border border-slate-200 rounded-lg text-slate-600 hover:bg-slate-50"
+                className="px-3 py-1.5 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
               >
                 Cancel
               </button>
@@ -380,7 +375,7 @@ export const GoalsPage: React.FC = () => {
                   const val = Number((document.getElementById('update-current-val-input') as HTMLInputElement).value);
                   handleUpdateCurrentValue(editingGoal, val);
                 }}
-                className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg"
+                className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition-colors"
               >
                 Save Progress
               </button>

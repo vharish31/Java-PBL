@@ -42,6 +42,9 @@ interface AppContextType {
   toasts: ToastMessage[];
   showToast: (message: string, type?: ToastMessage['type']) => void;
   dismissToast: (id: string) => void;
+  theme: 'light' | 'dark';
+  setTheme: (theme: 'light' | 'dark') => void;
+  toggleTheme: () => void;
   addEmissionRecord: (record: Omit<EmissionRecord, 'id' | 'createdAt'>) => Promise<EmissionRecord>;
   updateEmissionRecord: (id: string, updates: Partial<EmissionRecord>) => Promise<EmissionRecord>;
   deleteEmissionRecord: (id: string) => Promise<void>;
@@ -61,6 +64,33 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
   const [user, setUser] = useState<UserProfile>(INITIAL_USER);
   const [isDemoMode, setIsDemoMode] = useState<boolean>(true);
+  const [theme, setThemeState] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('carbonwise_theme');
+      if (stored === 'dark' || stored === 'light') return stored;
+    }
+    // Initially it should have light mode as requested
+    return 'light';
+  });
+
+  // Apply theme to document element
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    localStorage.setItem('carbonwise_theme', theme);
+  }, [theme]);
+
+  const setTheme = (newTheme: 'light' | 'dark') => {
+    setThemeState(newTheme);
+  };
+
+  const toggleTheme = () => {
+    setThemeState(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
   const [records, setRecords] = useState<EmissionRecord[]>([]);
   const [loadingRecords, setLoadingRecords] = useState<boolean>(true);
   const [emissionFactors] = useState<EmissionFactorConfig[]>(DEFAULT_EMISSION_FACTORS);
@@ -203,6 +233,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         toasts,
         showToast,
         dismissToast,
+        theme,
+        setTheme,
+        toggleTheme,
         addEmissionRecord,
         updateEmissionRecord,
         deleteEmissionRecord,

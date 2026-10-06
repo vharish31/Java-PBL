@@ -68,6 +68,8 @@ export interface EcoScoreBreakdown {
   goalProgressScore: number;
 }
 
+export type ThemeMode = 'light' | 'dark' | 'system';
+
 export interface UserProfile {
   id: string;
   name: string;
@@ -75,6 +77,7 @@ export interface UserProfile {
   country: string;
   userType: 'individual' | 'student' | 'family' | 'small_org';
   unitPreference: 'metric' | 'imperial';
+  themePreference?: ThemeMode;
   joinedDate: string;
   notificationsEnabled: boolean;
   weeklyDigest: boolean;
